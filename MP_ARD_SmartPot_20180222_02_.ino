@@ -13,16 +13,17 @@ Steps:
 3. A temporary widget will be automatically generated in the Cayenne Dashboard. To make the widget permanent click the plus sign on the widget.
 */
 
-/**@see https://www.facebook.com/groups/1794588907499798/?ref=group_header */
+/** @see https://www.facebook.com/photo.php?fbid=10215060465886540&set=gm.1890454251246596&type=3&ifg=1 */
 
-/**@bief the define for _DEBUG*/
+/** @bief the define for _DEBUG*/
 #define CAYENNE_PRINT Serial 
 #include <CayenneMQTTEthernet.h>
 
 /**@brief the analog pin for Soil Moisture and Humidity Sensor on the Arduino.*/
 #define PIN_SMHS A0
 
-#define SENSOR_5.0F
+#define PS_SENSOR 5.0F
+/**@brief change the define*/
 /**@brief the Sensor Percent Value */
 volatile uint8_t SenPerVal_g;
 
@@ -33,7 +34,6 @@ char password[] = "password";
 char clientID[] = "clientid";
 
 /**@brief function for math function .*/
-/**@param ................. .*/
 /**@return uint8_t @brief on the analog pin on the Arduino.*/
 uint8_t sensor_read()
 {
