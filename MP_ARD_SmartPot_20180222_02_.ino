@@ -14,16 +14,23 @@ Steps:
 */
 
 /** @see https://www.facebook.com/photo.php?fbid=10215060465886540&set=gm.1890454251246596&type=3&ifg=1 */
-/** @brief that link 
+/** @brief that link */
 
-/** @bief the define for _DEBUG*/
+/** @bief the define the Cayenne lib for _DEBUG*/
 #define CAYENNE_PRINT Serial 
 #include <CayenneMQTTEthernet.h>
 
 /** @brief the analog pin for Soil Moisture and Humidity Sensor on the Arduino.*/
 #define PIN_SMHS A0
 
-#define PS_SENSOR 5.0F
+/** @brief the */
+
+/** @brief pump for watering (12V)*/
+#define PIN_PUMP A2
+
+/** @brief photo resistor*/
+#define PIN_PHOTO_R 5.0F
+
 /** @brief change the define*/
 /**@brief the Sensor Percent Value */
 volatile uint8_t SenPerVal_g;
@@ -53,6 +60,10 @@ void setup()
   Serial.begin(9600);
   /** @brief the begin Cayenne .*/
   Cayenne.begin(username, password, clientID);
+    /*Setting up the Soil Humidity Sensor Pin to receive data */
+  pinMode(PIN_SMHS, INPUT);
+  /*Setting up the Photo Resistor Pin to receive data*/
+  pinMode(PIN_PHOTO_R, INPUT);
 }
 
 void loop() 
@@ -68,7 +79,7 @@ CAYENNE_OUT_DEFAULT()
   uint8_t sensor_read();
 
   // Write data to Cayenne here. This example just sends the current uptime in milliseconds on virtual channel 0.
-  //Cayenne.virtualWrite(0,TmplValueL);
+  // Cayenne.virtualWrite(0,TmplValueL);
   // Some examples of other functions you can use to send data.
   //Cayenne.celsiusWrite(1, 22.0);
   //Cayenne.luxWrite(2, 700);
