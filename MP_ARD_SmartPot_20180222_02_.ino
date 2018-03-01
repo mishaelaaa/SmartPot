@@ -43,17 +43,14 @@ char clientID[] = "clientid";
 
 /** @brief math function .*/
 /** @return uint8_t @brief on the analog pin on the Arduino.*/
-uint8_t sensor_read()
-{
-  /** @brief variables .*/ 
-  static int TmplValueL;
-  TmplValueL=0;
-  TmplValueL = analogRead (TmplValueL);
-  TmplValueL = map(TmplValueL, 400, 1023, 100, 0);
-  TmplValueL = constrain (TmplValueL, 400, 1023);
-  return(uint8_t)(255&TmplValueL);
-  
-}
+
+/** @brief the prototypesof the func */
+uint8_t sensor_read();
+uint8_t phr_read();
+double shms_and_light_data_output();
+
+volatile uint8_t shm_value;
+volatile uint8_t light_value;
 
 void setup() 
 {
@@ -77,7 +74,7 @@ void loop()
 CAYENNE_OUT_DEFAULT()
 {  
   uint8_t sensor_read();
-
+  
   // Write data to Cayenne here. This example just sends the current uptime in milliseconds on virtual channel 0.
   // Cayenne.virtualWrite(0,TmplValueL);
   // Some examples of other functions you can use to send data.
@@ -93,3 +90,32 @@ CAYENNE_IN_DEFAULT()
   CAYENNE_LOG("Channel %u, value %s", request.channel, getValue.asString());
   /** @Process message here. If there is an error set an error message using getValue.setError(), e.g getValue.setError("Error message");*/
 }
+
+
+//the functions
+
+uint8_t sensor_read()
+{
+  /** @brief variables .*/ 
+  static int TmplValueL;
+  TmplValueL=0;
+  TmplValueL = analogRead (TmplValueL);
+  TmplValueL = map(TmplValueL, 400, 1023, 100, 0);
+  TmplValueL = constrain (TmplValueL, 400, 1023);
+  return(uint8_t)(255&TmplValueL);
+  
+}
+
+uint8_t phr_read()
+{
+  static int TmpValL;
+  TmpValL = analogRead(PIN_PHOTO_R);
+  TmpValL = map(TmpValL, 0, 1024, 0, 100);
+  return (uint8_t)(255 & TmpValL);
+}
+
+
+double shms_and_light_data_output()
+{
+  
+ }
