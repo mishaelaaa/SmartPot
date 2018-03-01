@@ -48,10 +48,15 @@ char clientID[] = "clientid";
 /** @return uint8_t @brief on the analog pin on the Arduino.*/
 
 /** @brief the prototypesof the func */
-uint8_t sensor_read();
-uint8_t phr_read();
-double shms_and_light_data_output();
+/** @brief func for read the soil ot the pot */
+uint8_t Sensor_read(); 
+uint8_t PHr_read();
+double SHMS_and_LIGHT_data_output();
+double Whater_pump();
 
+/** @brief the var for the pump */
+uint8_t MIN_value_water;;
+uint8_t MAX_value_water;
 
 void setup() 
 {
@@ -74,7 +79,7 @@ void loop()
 // You can also use functions for specific channels, e.g CAYENNE_OUT(1) for sending channel 1 data.
 CAYENNE_OUT_DEFAULT()
 {  
-  uint8_t sensor_read();
+  uint8_t Sensor_read();
   
   // Write data to Cayenne here. This example just sends the current uptime in milliseconds on virtual channel 0.
   // Cayenne.virtualWrite(0,TmplValueL);
@@ -92,10 +97,9 @@ CAYENNE_IN_DEFAULT()
   /** @Process message here. If there is an error set an error message using getValue.setError(), e.g getValue.setError("Error message");*/
 }
 
-
 //the functions
-
-uint8_t sensor_read()
+/** @brief the read, map and constrain the value */ 
+uint8_t Sensor_read()
 {
   /** @brief variables .*/ 
   static int TmplValueL;
@@ -104,10 +108,9 @@ uint8_t sensor_read()
   TmplValueL = map(TmplValueL, 400, 1023, 100, 0);
   TmplValueL = constrain (TmplValueL, 400, 1023);
   return(uint8_t)(255&TmplValueL);
-  
 }
-
-uint8_t phr_read()
+/** @brief read the photo resistor and map func for small values */
+uint8_t PHr_read()
 {
   static int TmpValL;
   TmpValL = analogRead(PIN_PHOTO_R);
@@ -116,10 +119,10 @@ uint8_t phr_read()
 }
 
 /** @brief the Humudity output and Light Percente */
-double shms_and_light_data_output()
+double SHMS_and_LIGHT_data_output()
 {
-  SenPerVal_g = sensor_read();
-  PhPerlVal_g = phr_read();
+  SenPerVal_g = Sensor_read();
+  PhPerlVal_g = PHr_read();
   Serial.print("The Humudity in the soil is: ");
   Serial.print(SenPerVal_g);
   Serial.println("%");
@@ -127,4 +130,8 @@ double shms_and_light_data_output()
   Serial.print(PhPerlVal_g);
   Serial.println("%");
 }
-
+/** @brief the func for whater pump */
+double Whater_pump()
+{
+  
+}
