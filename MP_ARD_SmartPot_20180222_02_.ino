@@ -14,30 +14,31 @@ Steps:
 */
 
 /** @see https://www.facebook.com/photo.php?fbid=10215060465886540&set=gm.1890454251246596&type=3&ifg=1 */
+/** @brief that link 
 
 /** @bief the define for _DEBUG*/
 #define CAYENNE_PRINT Serial 
 #include <CayenneMQTTEthernet.h>
 
-/**@brief the analog pin for Soil Moisture and Humidity Sensor on the Arduino.*/
+/** @brief the analog pin for Soil Moisture and Humidity Sensor on the Arduino.*/
 #define PIN_SMHS A0
 
 #define PS_SENSOR 5.0F
-/**@brief change the define*/
+/** @brief change the define*/
 /**@brief the Sensor Percent Value */
 volatile uint8_t SenPerVal_g;
 
-/**@brief the connection for Cayenne. */
-/**@see https://cayenne.mydevices.com/ */
+/** @brief the connection for Cayenne. */
+/** @see https://cayenne.mydevices.com/ */
 char username[] = "username";
 char password[] = "password";
 char clientID[] = "clientid";
 
-/**@brief function for math function .*/
-/**@return uint8_t @brief on the analog pin on the Arduino.*/
+/** @brief math function .*/
+/** @return uint8_t @brief on the analog pin on the Arduino.*/
 uint8_t sensor_read()
 {
-  /**@brief variables .*/ 
+  /** @brief variables .*/ 
   static int TmplValueL;
   TmplValueL=0;
   TmplValueL = analogRead (TmplValueL);
@@ -50,18 +51,18 @@ uint8_t sensor_read()
 void setup() 
 {
   Serial.begin(9600);
-  /**@brief the begin Cayenne .*/
+  /** @brief the begin Cayenne .*/
   Cayenne.begin(username, password, clientID);
 }
 
 void loop() 
 {
-  /**@brief the loop func Cayenne .*/
+  /** @brief the loop func Cayenne .*/
   Cayenne.loop();
 }
 
 // Default function for sending sensor data at intervals to Cayenne.
-// You can also use functions for s[pecific channels, e.g CAYENNE_OUT(1) for sending channel 1 data.
+// You can also use functions for specific channels, e.g CAYENNE_OUT(1) for sending channel 1 data.
 CAYENNE_OUT_DEFAULT()
 {  
   uint8_t sensor_read();
@@ -74,10 +75,10 @@ CAYENNE_OUT_DEFAULT()
   //Cayenne.virtualWrite(3, 50, TYPE_PROXIMITY, UNIT_CENTIMETER);
 }
 
-/**@brief Default function for processing actuator commands from the Cayenne Dashboard.*/
-/**@brief You can also use functions for specific channels, e.g CAYENNE_IN(1) for channel 1 commands.*/
+/** @brief Default function for processing actuator commands from the Cayenne Dashboard.*/
+/** @brief You can also use functions for specific channels, e.g CAYENNE_IN(1) for channel 1 commands.*/
 CAYENNE_IN_DEFAULT()
 {
   CAYENNE_LOG("Channel %u, value %s", request.channel, getValue.asString());
-  /**@Process message here. If there is an error set an error message using getValue.setError(), e.g getValue.setError("Error message");*/
+  /** @Process message here. If there is an error set an error message using getValue.setError(), e.g getValue.setError("Error message");*/
 }
