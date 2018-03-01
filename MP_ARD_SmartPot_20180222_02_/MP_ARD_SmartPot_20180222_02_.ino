@@ -32,8 +32,11 @@ Steps:
 #define PIN_PHOTO_R 5.0F
 
 /** @brief change the define*/
-/**@brief the Sensor Percent Value */
+/** @brief the Sensor Percent Value */
 volatile uint8_t SenPerVal_g;
+
+/** @brief the Photo Resistor Percent Value */
+volatile uint8_t PhPerlVal_g;
 
 /** @brief the connection for Cayenne. */
 /** @see https://cayenne.mydevices.com/ */
@@ -49,8 +52,6 @@ uint8_t sensor_read();
 uint8_t phr_read();
 double shms_and_light_data_output();
 
-volatile uint8_t shm_value;
-volatile uint8_t light_value;
 
 void setup() 
 {
@@ -114,8 +115,16 @@ uint8_t phr_read()
   return (uint8_t)(255 & TmpValL);
 }
 
-
+/** @brief the Humudity output and Light Percente */
 double shms_and_light_data_output()
 {
-  
- }
+  SenPerVal_g = sensor_read();
+  PhPerlVal_g = phr_read();
+  Serial.print("The Humudity in the soil is: ");
+  Serial.print(SenPerVal_g);
+  Serial.println("%");
+  Serial.print("Light Percente: ");
+  Serial.print(PhPerlVal_g);
+  Serial.println("%");
+}
+
