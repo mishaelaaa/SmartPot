@@ -1,4 +1,5 @@
 /*
+ * name Mihaela Petkova
  * name project SmartPot
  * date 22.02.2018
  */
