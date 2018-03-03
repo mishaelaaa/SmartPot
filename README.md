@@ -9,10 +9,6 @@ We using :
     Bord - Arduino Uno
     Visual Studio / Arduino - Use Visual Studio for the project and Visual micro plugin - http://www.visualmicro.com/
 
-HowToBasic
+The idea : 
 --------------
-
-Arduino is easy to use open source platform that can bring a lot of knowledge.
-
-The idea was we made it smart part of the house.
-
+    Real information about our flower, wherever we are.
